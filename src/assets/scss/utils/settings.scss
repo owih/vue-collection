@@ -7,18 +7,12 @@ html, body {
 }
 
 body {
-  color: $white;
-  background-color: $dark;
-  --themecolor: #090909;
-  --themetoggle: #FFFFFF;
-  --border-color: #FFFFFF;
-  --border-colored: hsla(0,0%,50%,.1);
-  --input-box-shadow-color: coral;
+  color: $dark;
+  background-color: $white;
+  --themecolor: #FFFFFF;
+  --themetoggle: #090909;
 
   font-family: 'open sans', 'sans-serif';
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   font-size: $font-size-base;
   transition: $transition-base;
 
@@ -27,14 +21,16 @@ body {
     overflow: hidden;
   }
 }
-body.light {
-  color: $dark;
-  background-color: $white;
-  --themecolor: #FFFFFF;
-  --themetoggle: #090909;
-  --border-color: #000000;
-  --border-colored: hsla(0, 2%, 60%, 0.2);
-  --input-box-shadow-color: coral;
+body.dark {
+  color: $light;
+  background-color: $dark;
+  --themecolor: #090909;
+  --themetoggle: #FFFFFF;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .main {
   flex-grow: 1;
