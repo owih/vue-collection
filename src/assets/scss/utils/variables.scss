@@ -5,14 +5,12 @@ $grid-breakpoints: (
         md: 768px,
         lg: 992px,
         xl: 1420px
-) ;
-
-$container-max-widths: (
-        //sm: 540px,
-        //md: 720px,
-        //lg: 960px,
-        xl: 1346px
 );
+
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1420px;
 
 $scrollbar-width: 6px;
 

@@ -1,12 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <NavList />
+  <router-view/>
 </template>
 
 <script>
+import NavList from "@/components/NavList/NavList";
 
 export default {
   name: 'App',
   components: {
+    NavList,
   }
 }
 </script>

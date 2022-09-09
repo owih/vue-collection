@@ -27,11 +27,6 @@ body.dark {
   --themecolor: #090909;
   --themetoggle: #FFFFFF;
 }
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 .main {
   flex-grow: 1;
   position: relative;
@@ -39,7 +34,18 @@ body.dark {
 .icon {
   pointer-events: none;
   display: flex;
-
+}
+.btn {
+  padding: 10px 15px;
+  display: inline-block;
+  border: 2px solid $primary;
+  color: $black;
+  text-decoration: none;
+  transition: $transition-base;
+  &:hover {
+    color: $white;
+    background-color: $primary;
+  }
 }
 .wrapper {
   display: flex;
@@ -48,6 +54,18 @@ body.dark {
 .container {
   padding: 0 16px;
   height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  max-width: $sm;
+  @include media-breakpoint-up(md) {
+    max-width: $md;
+  }
+  @include media-breakpoint-up(lg) {
+    max-width: $lg;
+  }
+  @include media-breakpoint-up(xl) {
+    max-width: $xl;
+  }
 }
 
 ::-webkit-scrollbar {
