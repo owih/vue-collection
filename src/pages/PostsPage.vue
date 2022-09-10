@@ -6,10 +6,10 @@
       <CreatePostForm :class="$style.form" @createPost="createNewPost"/>
       <h3>Posts list</h3>
       <div :class="$style.controls">
-        <ButtonControl :class="$style.control">
+        <ButtonControl @click="setFetchPosts" :class="$style.control">
           Update posts list
         </ButtonControl>
-        <ButtonControl :class="$style.control">
+        <ButtonControl @click="savePostListState" :class="$style.control">
           Save current list state
         </ButtonControl>
       </div>
@@ -37,18 +37,35 @@ export default {
     }
   },
   mounted() {
-    this.getPosts();
+    this.setPostsState();
   },
   methods: {
-    async getPosts() {
+    setPostsState() {
+      if (this.getLocalStoragePosts()) {
+        this.setLocalStoragePosts();
+      } else {
+        this.setFetchPosts();
+      }
+    },
+    setLocalStoragePosts() {
+      this.posts = JSON.parse(this.getLocalStoragePosts());
+      console.log(JSON.parse(this.getLocalStoragePosts()));
+    },
+    getLocalStoragePosts() {
+      return localStorage.getItem('postsList');
+    },
+    async setFetchPosts() {
       this.posts = await getPosts(10);
-      console.log(this.posts)
+      console.log(JSON.stringify(this.posts))
     },
     removePost(postToRemove) {
       this.posts = this.posts.filter((post) => post.id !== postToRemove.id);
     },
     createNewPost(post) {
       this.posts.push(post);
+    },
+    savePostListState() {
+      localStorage.setItem('postsList', JSON.stringify(this.posts));
     }
   },
 

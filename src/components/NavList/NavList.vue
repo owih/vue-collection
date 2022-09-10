@@ -44,10 +44,12 @@ export default {
   .list {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 0 -12px;
+    margin: -8px -12px;
+    padding-left: 0;
   }
   .item {
-    padding: 0 12px;
+    padding: 8px 12px;
   }
 </style>
