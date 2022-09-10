@@ -24,6 +24,7 @@ export default {
     padding: 10px 16px 6px;
     border: 1px solid teal;
     outline: none;
+    height: 100%;
     &:focus {
       border-color: #f39c12;
     }

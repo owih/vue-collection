@@ -5,15 +5,22 @@
       <h3>Create new post</h3>
       <CreatePostForm :class="$style.form" @createPost="createNewPost"/>
       <h3>Posts list</h3>
-      <div :class="$style.controls">
-        <ButtonControl @click="setFetchPosts" :class="$style.control">
-          Update posts list
-        </ButtonControl>
-        <ButtonControl @click="savePostListState" :class="$style.control">
-          Save current list state
-        </ButtonControl>
+      <div :class="$style.panel">
+        <div :class="$style.item">
+          <ButtonControl @click="setFetchPosts" :class="$style.control">
+            Update posts list
+          </ButtonControl>
+        </div>
+        <div :class="$style.item">
+          <ButtonControl @click="savePostListState" :class="$style.control">
+            Save current list state
+          </ButtonControl>
+        </div>
+        <div :class="[$style.item, $style.filter]">
+          <PostsFilter @filterValue="setFilteredValue" @searchType="changeSearchType"/>
+        </div>
       </div>
-      <PostsList @removePost="removePost" :posts="posts" />
+      <PostsList @removePost="removePost" :posts="filteredPosts" />
     </div>
   </div>
 </template>
@@ -23,17 +30,20 @@
 import getPosts from "@/api/getPosts";
 import PostsList from "@/components/PostsList/PostsList";
 import CreatePostForm from "@/components/CreatePostForm/CreatePostForm";
+import PostsFilter from "@/components/PostsFilter/PostsFilter";
 
 export default {
   name: "PostsPage",
   postsLimit: 10,
 
   components: {
-    PostsList, CreatePostForm,
+    PostsList, CreatePostForm, PostsFilter,
   },
   data() {
     return {
       posts: [],
+      searchType: '',
+      filterValue: '',
     }
   },
   mounted() {
@@ -54,6 +64,9 @@ export default {
     getLocalStoragePosts() {
       return localStorage.getItem('postsList');
     },
+    updatePostsFromFetch() {
+
+    },
     async setFetchPosts() {
       this.posts = await getPosts(10);
       console.log(JSON.stringify(this.posts))
@@ -65,10 +78,20 @@ export default {
       this.posts.push(post);
     },
     savePostListState() {
-      localStorage.setItem('postsList', JSON.stringify(this.posts));
+      localStorage.setItem('postsList', JSON.stringify(this.filteredPosts));
+    },
+    setFilteredValue(value) {
+      this.filterValue = value;
+    },
+    changeSearchType(type) {
+      this.searchType = type;
     }
   },
-
+  computed: {
+    filteredPosts() {
+      return this.posts.filter((item) => item[this.searchType].includes(this.filterValue));
+    }
+  },
 }
 </script>
 
@@ -83,8 +106,16 @@ export default {
         margin-right: 16px;
       }
     }
-    .controls {
-      margin-bottom: 20px;
+    .panel {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -8px -8px 20px;
+    }
+    .item {
+      padding: 8px;
+    }
+    .filter {
+      flex: 1 0 auto;
     }
   }
 </style>

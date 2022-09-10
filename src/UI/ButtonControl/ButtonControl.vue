@@ -13,6 +13,7 @@ export default {
 <style module lang="scss">
   .root {
     color: white;
+    text-align: center;
     border: 2px solid transparent;
     background-color: teal;
     padding: 10px 15px 6px;
