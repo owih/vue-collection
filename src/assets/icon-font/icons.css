@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "icons";
+    src: url("./icons.eot?26bfac9f87bd969387f22b227bf87aef#iefix") format("embedded-opentype"),
+url("./icons.woff2?26bfac9f87bd969387f22b227bf87aef") format("woff2"),
+url("./icons.woff?26bfac9f87bd969387f22b227bf87aef") format("woff");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-heart:before {
+    content: "\f101";
+}
+.icon-message:before {
+    content: "\f102";
+}
