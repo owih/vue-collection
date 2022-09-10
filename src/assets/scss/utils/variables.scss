@@ -60,6 +60,7 @@ $body-color: $white;
 // Настройки шрифта ->
 
 $font-family-sans-serif: "PT Sans", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+$font-family-base: 'PlayenSans';
 
 $font-size-base:              18px;
 $font-size-lg:                $font-size-base * 1.25 !default;
@@ -77,7 +78,7 @@ $headings-line-height: 1.25      ;
 $headings-font-weight: 700      ;
 $headings-margin-bottom: 16px   ;
 $headings-margin-top: 4px   ;
-$headings-font-family: 'ActayBold', 'sans-serif';
+$headings-font-family: 'MahoneSansBold', 'sans-serif';
 
 // <- Настройки шрифта
 

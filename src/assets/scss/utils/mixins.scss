@@ -65,6 +65,16 @@
   }
 }
 
+@mixin font-face-ttf($font-family, $url, $weight) {
+  @font-face {
+    font-family: '#{$font-family}';
+    src: url('../fonts/#{$url}.ttf') format('truetype');
+    font-weight: #{$weight};
+    font-display: swap;
+    font-style: normal;
+  }
+}
+
 // Menu burger
 
 @mixin burger ($width, $height) {
