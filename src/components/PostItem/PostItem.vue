@@ -6,6 +6,14 @@
   <div :class="$style.body">
     {{ post.body }}
   </div>
+  <div :class="$style.bottom">
+    <span
+      :class="[{ active: isLiked }, $style.icon]"
+      @click="isLiked = !isLiked"
+    >
+      <i class="icon icon-heart"></i>
+    </span>
+  </div>
   <div :class="$style.remove" @click="emitRemovePost"></div>
 </div>
 </template>
@@ -13,10 +21,20 @@
 <script>
 export default {
   name: "PostItem",
+  data() {
+    return {
+     isLiked: false,
+    }
+  },
   props: {
     post: {
       type: Object,
       required: true,
+    }
+  },
+  watch: {
+    isLiked() {
+      console.log(this.isLiked)
     }
   },
   methods: {
@@ -70,5 +88,24 @@ export default {
       transform: rotate(-45deg);
     }
   }
+  .bottom {
+    padding: 16px;
+    display: flex;
+    justify-content: end;
+  }
+  .icon {
+    cursor: pointer;
+    &:hover {
+      color: crimson;
+    }
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+}
+</style>
+<style scoped>
+.active {
+  color: crimson;
 }
 </style>

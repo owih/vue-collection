@@ -2,7 +2,7 @@
   <div v-if="posts.length" :class="$style.root">
       <PostItem @removePost="removePost(post)" :class="$style.item" :post="post" v-for="post in posts" :key="post.id"/>
   </div>
-  <div v-else>Not </div>
+  <div v-else>Posts list now is empty...</div>
 </template>
 
 <script>
