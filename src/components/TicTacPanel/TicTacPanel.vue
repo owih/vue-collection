@@ -1,72 +1,82 @@
 <template>
-  <div :class="$style.root">
-    <div :class="$style.item">
-      <InputField v-model="filterValue" placeholder="Enter search query"/>
-    </div>
+  <div :class="$style.root" v-if="!isGameRunning">
     <div :class="$style.item">
       <input
           checked="true"
           name="search-type"
           :class="$style.input"
           type="radio"
-          id="titleSearch"
-          value="title"
-          v-model="searchType"
+          id="X"
+          value="X"
+          v-model="type"
       >
-      <label :class="$style.label" for="titleSearch">Search from title</label>
+      <label :class="$style.label" for="X">Choose X</label>
     </div>
     <div :class="$style.item">
       <input
           name="search-type"
           :class="$style.input"
           type="radio"
-          id="bodySearch"
-          value="body"
-          v-model="searchType"
+          id="O"
+          value="O"
+          v-model="type"
       >
-      <label :class="$style.label" for="bodySearch">Search from body</label>
+      <label :class="$style.label" for="O">Choose O</label>
+    </div>
+    <div :class="$style.item">
+      <ButtonControl @click="play">
+        Play
+      </ButtonControl>
+    </div>
+  </div>
+  <div :class="$style.root" v-else>
+    <div :class="$style.item">
+      <ButtonControl @click="end">
+        End
+      </ButtonControl>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PostsFilter",
+  name: "TicTacPanel",
   data() {
     return {
-      filterValue: '',
-      searchType: 'title',
+      type: 'X',
+    }
+  },
+  props: {
+    isGameRunning: {
+      type: Boolean,
+      required: true,
     }
   },
   emits: {
-    filterValue: {
-      type: [String, Number],
-    },
-    searchType: {
+    play: {
       type: String,
     },
+    end: {},
   },
-  watch: {
-    searchType() {
-      this.$emit('searchType', this.searchType);
+  methods: {
+    play() {
+      this.$emit('play', this.type)
     },
-    filterValue() {
-      this.$emit('filterValue', this.filterValue);
-    },
+    end() {
+      this.$emit('end', this.type)
+    }
   },
-   mounted() {
-     this.$emit('searchType', this.searchType);
-   }
 }
 </script>
 
 <style module lang="scss">
   .root {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     margin: -8px;
     .item {
       padding: 8px;
-      flex: 1 0 auto;
     }
     .input {
       position: absolute;

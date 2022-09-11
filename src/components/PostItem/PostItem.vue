@@ -59,7 +59,6 @@ export default {
     padding: 16px;
   }
   .remove {
-    color: red;
     position: absolute;
     right: 16px;
     top: 16px;
