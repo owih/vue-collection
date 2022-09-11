@@ -3,11 +3,21 @@
     <div :class="$style.root">
       <h1>Tic-Tac mini-game</h1>
       <div :class="$style.wrapper">
+        <Transition  name="message">
+          <span v-if="finalMessage" :class="$style.message">
+              {{ finalMessage.split(' ')[0] }}
+          </span>
+        </Transition >
         <TicTacTable
             @pickField="processMove"
             :isGameRunning="isGameRunning"
             :isPlayersTurn="isPlayersTurn"
             :tableItems="currentTableItems" />
+        <Transition  name="message">
+          <span v-if="finalMessage" :class="$style.message">
+              {{ finalMessage.split(' ')[1] }}
+          </span>
+        </Transition >
       </div>
       <div :class="$style.panel">
         <TicTacPanel
@@ -58,20 +68,26 @@ export default {
       type: 'X',
       PCType: 'O',
       moveCounter: 0,
+      finalMessage: '',
     }
   },
   methods: {
-    play(type) {
+    setInitialState() {
       this.moveCounter = 0;
+      this.currentTableItems = this.getStartArray();
+      this.finalMessage = '';
+    },
+    play(type) {
+      this.setInitialState();
       this.type = type;
       this.isGameRunning = true;
       this.isPlayersTurn = this.type === 'X';
       this.PCType = this.type === 'X' ? 'O' :'X';
-      this.currentTableItems = this.getStartArray();
     },
     end() {
       this.isGameRunning = false;
       this.currentTableItems = this.getStartArray();
+      this.finalMessage = '';
     },
     processMove(id) {
       this.pickField(id)
@@ -83,7 +99,6 @@ export default {
       this.currentTableItems[id].type = this.isPlayersTurn ? this.type : this.PCType;
       this.currentTableItems[id].owner = this.isPlayersTurn ? 'player' : 'pc';
       this.moveCounter++;
-      console.log(this.moveCounter)
       this.checkIsGameOver();
     },
     doPCMove() {
@@ -96,7 +111,6 @@ export default {
       return JSON.parse(JSON.stringify(this.tableItems));
     },
     checkIsGameOver() {
-      console.log('check')
       let combs = [
         [0, 1, 2],
         [3, 4, 5],
@@ -113,21 +127,23 @@ export default {
             this.currentTableItems[comb[0]].type !== '') {
           this.isGameRunning = false;
           this.setWinner();
-        } else if (this.moveCounter === 9) {
-          this.isGameRunning = false;
-          this.setDraw();
+          return;
         }
+      }
+      if (this.isGameRunning && this.moveCounter === 9) {
+        this.isGameRunning = false;
+        this.setDraw();
       }
     },
     setWinner() {
       if (this.isPlayersTurn) {
-        console.log('PLAYER WIN');
+        this.finalMessage = 'YOU WON!';
       } else {
-        console.log('PC WIN');
+        this.finalMessage = 'DUDE HOW?:(';
       }
     },
     setDraw() {
-      console.log('ITS DRAW');
+      this.finalMessage = 'ITS DRAW';
     }
   },
   watch: {
@@ -145,9 +161,37 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
     .panel {
       text-align: center;
     }
+    .message {
+      position: absolute;
+      right: 0;
+      font-size: 60px;
+      font-weight: bold;
+      color: #c0392b;
+      &:first-child {
+        left: 0;
+        color: #1abc9c;
+      }
+    }
   }
+</style>
+<style scoped>
+.message-enter-active,
+.message-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.message-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.message-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
 </style>

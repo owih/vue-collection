@@ -11,7 +11,6 @@ const app = createApp(App);
 
 ui.forEach((item) => {
   app.component(item.name, item);
-  console.log(item)
 })
 
 app

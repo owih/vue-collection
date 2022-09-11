@@ -59,7 +59,6 @@ export default {
     },
     setLocalStoragePosts() {
       this.posts = JSON.parse(this.getLocalStoragePosts());
-      console.log(JSON.parse(this.getLocalStoragePosts()));
     },
     getLocalStoragePosts() {
       return localStorage.getItem('postsList');
@@ -69,7 +68,6 @@ export default {
     },
     async setFetchPosts() {
       this.posts = await getPosts(10);
-      console.log(JSON.stringify(this.posts))
     },
     removePost(postToRemove) {
       this.posts = this.posts.filter((post) => post.id !== postToRemove.id);
@@ -97,7 +95,7 @@ export default {
 
 <style module lang="scss">
   .root {
-    padding-top: 40px;
+    padding: 40px 0;
     .form {
       margin-bottom: 30px;
     }

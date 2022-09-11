@@ -32,11 +32,6 @@ export default {
       required: true,
     }
   },
-  watch: {
-    isLiked() {
-      console.log(this.isLiked)
-    }
-  },
   methods: {
     emitRemovePost() {
       this.$emit('removePost', this.post.id);
