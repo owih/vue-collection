@@ -1,17 +1,14 @@
 <template>
   <div class="container">
     <div :class="$style.root">
-      <h1>Main page</h1>
-      <p>This is my collection for Vue applications created in the learning process or as pet projects </p>
+      <h1>There will be some new apps...</h1>
     </div>
   </div>
 </template>
 
 <script>
-
-
 export default {
-  name: "MainPage",
+  name: "SoonPage"
 }
 </script>
 

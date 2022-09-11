@@ -8,10 +8,10 @@
         <router-link :class="$style.btn" to="/posts">Posts</router-link>
       </li>
       <li :class="$style.item">
-        <router-link :class="$style.btn" to="/posts">Posts</router-link>
+        <router-link :class="$style.btn" to="/tictac">Tic-Tac</router-link>
       </li>
       <li :class="$style.item">
-        <router-link :class="$style.btn" to="/posts">Posts</router-link>
+        <router-link :class="$style.btn" to="/soon">Soon</router-link>
       </li>
     </ul>
   </nav>
@@ -44,10 +44,12 @@ export default {
   .list {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 0 -12px;
+    margin: -8px -12px;
+    padding-left: 0;
   }
   .item {
-    padding: 0 12px;
+    padding: 8px 12px;
   }
 </style>

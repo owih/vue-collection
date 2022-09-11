@@ -34,7 +34,7 @@ export default {
     }
   },
   emits: {
-    post: {
+    createPost: {
       type: Object,
       required: true,
     },

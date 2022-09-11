@@ -32,11 +32,6 @@ export default {
       required: true,
     }
   },
-  watch: {
-    isLiked() {
-      console.log(this.isLiked)
-    }
-  },
   methods: {
     emitRemovePost() {
       this.$emit('removePost', this.post.id);
@@ -59,7 +54,6 @@ export default {
     padding: 16px;
   }
   .remove {
-    color: red;
     position: absolute;
     right: 16px;
     top: 16px;

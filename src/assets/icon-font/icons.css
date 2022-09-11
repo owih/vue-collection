@@ -1,8 +1,8 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.eot?26bfac9f87bd969387f22b227bf87aef#iefix") format("embedded-opentype"),
-url("./icons.woff2?26bfac9f87bd969387f22b227bf87aef") format("woff2"),
-url("./icons.woff?26bfac9f87bd969387f22b227bf87aef") format("woff");
+    src: url("./icons.eot?22ddf26bb55f0012f02c74a7878633be#iefix") format("embedded-opentype"),
+url("./icons.woff2?22ddf26bb55f0012f02c74a7878633be") format("woff2"),
+url("./icons.woff?22ddf26bb55f0012f02c74a7878633be") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -16,9 +16,15 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-heart:before {
+.icon-circle:before {
     content: "\f101";
 }
-.icon-message:before {
+.icon-clear:before {
     content: "\f102";
+}
+.icon-heart:before {
+    content: "\f103";
+}
+.icon-message:before {
+    content: "\f104";
 }
