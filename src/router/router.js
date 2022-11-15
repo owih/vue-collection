@@ -25,7 +25,7 @@ const routes = [
 
 const router = new createRouter({
   routes,
-  history: createWebHistory(),
+  history: createWebHistory('/vue-collection/'),
 });
 
 export default router;
